@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclasses
+from dataclasses import dataclass
 from excecoes import HorarioIndisponivelError, PacienteJaAgendadoError
-from typing import tuple, list
+
 
 #A) Paciente
-@dataclasses(frozen=True)
+@dataclass(frozen=True)
 class Paciente:
     nome: str
     cartao_sus: str
@@ -73,9 +73,9 @@ class Agenda:
             if ja_agendado.paciente == atendimento.paciente:
                 raise PacienteJaAgendadoError(f"O paciente {atendimento.paciente.nome} já possui um atendimento agendado.")
     
-    duracao = atendimento.duracao_minutos()
-    if self.minutos_ocupados + duracao > self.limite_minutos:
-        minutos_restantes = self.limite_minutos - self.minutos_ocupados
-        raise HorarioIndisponivelError(f"Horário indisponível. Necessário {duracao} min, restam apenas {max(0, minutos_restantes)} min.")
-
-self._atendimentos.append(atendimento)
+        duracao = atendimento.duracao_minutos()
+        if self.minutos_ocupados + duracao > self.limite_minutos:
+            minutos_restantes = self.limite_minutos - self.minutos_ocupados
+            raise HorarioIndisponivelError(f"Horário indisponível. Necessário {duracao} min, restam apenas {max(0, minutos_restantes)} min.")
+        
+        self._atendimentos.append(atendimento)

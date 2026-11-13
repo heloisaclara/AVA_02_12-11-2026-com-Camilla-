@@ -1,4 +1,4 @@
-from arquivos import Agenda, Paciente, Consulta, Exame, Vacinacao
+from modelos import Agenda, Paciente, Consulta, Exame, Vacinacao
 from excecoes import AgendaError
 
 def main() -> None:
